@@ -30,11 +30,11 @@ public class NagaoAlgorithm {
 
     private Map<String, TFNeighbor> wordTFNeighbor;
 
-    private final static String stopwords = "的很了么呢是嘛个都也比还这于不与才上用就好在和对挺去后没说";
+    private final static String stopwords = "锟侥猴拷锟斤拷么锟斤拷锟斤拷锟斤拷锟斤拷锟揭诧拷然锟斤拷锟斤拷诓锟斤拷锟斤拷锟斤拷锟矫就猴拷锟节和讹拷挺去锟斤拷没说";
 
     private NagaoAlgorithm(){
         //default N = 5
-        N = 3;
+        N = 5;
         leftPTable = new ArrayList<String>();
         rightPTable = new ArrayList<String>();
         wordTFNeighbor = new HashMap<String, TFNeighbor>();
@@ -169,12 +169,13 @@ public class NagaoAlgorithm {
                         rightNeighborNumber > Integer.parseInt(threshold[2]) && mi > Integer.parseInt(threshold[3]) ){
                     StringBuilder sb = new StringBuilder();
                     sb.append(entry.getKey());
-                    sb.append(",").append(tf);
-                    sb.append(",").append(leftNeighborNumber);
-                    sb.append(",").append(rightNeighborNumber);
-                    sb.append(",").append(tfNeighbor.getLeftNeighborEntropy());
-                    sb.append(",").append(tfNeighbor.getRightNeighborEntropy());
-                    sb.append(",").append(mi).append("\r\n");
+                    sb.append(" ").append(tf);
+//                    sb.append(",").append(leftNeighborNumber);
+//                    sb.append(",").append(rightNeighborNumber);
+//                    sb.append(",").append(tfNeighbor.getLeftNeighborEntropy());
+//                    sb.append(",").append(tfNeighbor.getRightNeighborEntropy());
+//                    sb.append(",").append(mi).append("\r\n");
+                    sb.append("\r\n");
                     bw.write(sb.toString());
                 }
             }
@@ -206,7 +207,7 @@ public class NagaoAlgorithm {
         //step3: count TF and Neighbor
         nagao.countTFNeighbor();
         //step4: save TF NeighborInfo and MI
-        nagao.saveTFNeighborInfoMI(out, stopList, "1,1,1,5".split(","));
+        nagao.saveTFNeighborInfoMI(out, stopList, "20,10,10,20".split(","));
     }
     public static void applyNagao(String[] inputs, String out, String stopList, int n, String filter){
         NagaoAlgorithm nagao = new NagaoAlgorithm();
@@ -242,8 +243,9 @@ public class NagaoAlgorithm {
     }
 
     public static void main(String[] args) {
-        String[] ins = {"C:/test.txt"};
-        applyNagao(ins, "C:/out.txt", "C:/StopWords.txt");
+
+        String[] ins = {"C:/绌胯秺鐏嚎_杈撳叆.txt"};
+        applyNagao(ins, "C:/绌胯秺鐏嚎_杈撳嚭.txt", "C:/StopWords.txt");
     }
 
 }
