@@ -6,9 +6,24 @@ import java.util.Scanner;
 /**
  * Created by Administrator on 2016/9/10.
  */
-public class Main1 {
+public class Main1 implements Cloneable{
+
+    private int a = 10;
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     public static void main(String[] args) {
+        Main1 m1 = new Main1();
+        try {
+            Main1 m2 = (Main1) m1.clone();
+            m1.a = 100;
+            System.out.println(m2.a);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();
         int len = in.nextInt();
